@@ -1,2 +1,10 @@
-<h1>Cards#show</h1>
-<p>Find me in app/views/cards/show.html.erb</p>
+<h1><%=  @card.name %></h1>
+
+<h3><%= @card.id %></h3>
+<% @card.tasks.each do |t| %>
+  <p> - <%= t.description %><p>
+<% end %>
+
+<%= link_to "Edit", edit_card_path %>
+<%= link_to "New", new_card_path %>
+<%= button_to "Delete", card_path(@card.id), :method => :delete %>

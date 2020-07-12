@@ -1,2 +1,13 @@
-<h1>Cards#index</h1>
-<p>Find me in app/views/cards/index.html.erb</p>
+<h1>Cards</h1>
+
+<div>
+  <% @cards.each do |card| %>
+    <p><%= link_to card.name, card %></p>
+  <% end %>
+</div>
+
+
+<div>
+  <p> =============================================</p>
+  <p><%= link_to "Add Card", new_card_path %></p>
+</div>
