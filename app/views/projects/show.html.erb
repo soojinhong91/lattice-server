@@ -1,7 +1,12 @@
 <h1><%=  @project.name %></h1>
 
-<p><%= @project.id %></p>
-<p><%= @project.cards %></p>
+<h3><%= @project.id %></h3>
+<p><% @project.cards.each do | c| %></p>
+  <p> - <%= c.name %><p>
+<% end %>
+
+
 
 <%= link_to "Edit", edit_project_path %>
 <%= link_to "New", new_project_path %>
+<%= button_to "Delete", project_path(@project.id), :method => :delete %>
