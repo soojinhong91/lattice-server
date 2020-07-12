@@ -1,2 +1,7 @@
-<h1>Projects#show</h1>
-<p>Find me in app/views/projects/show.html.erb</p>
+<h1><%=  @project.name %></h1>
+
+<p><%= @project.id %></p>
+<p><%= @project.cards %></p>
+
+<%= link_to "Edit", edit_project_path %>
+<%= link_to "New", new_project_path %>
