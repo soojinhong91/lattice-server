@@ -3,9 +3,15 @@
 <h3><%= @project.id %></h3>
 <p><% @project.cards.each do | c| %></p>
   <p> - <%= c.name %><p>
+<<<<<<< HEAD
   <% c.tasks.each do |t| %>
     --<%= t.description %>
     <% end %>
+=======
+  <% c.tasks.each do | t| %>
+    <p> -- <%= t.description %></p>
+  <% end %>
+>>>>>>> 52b08347b0d0fce8b31f136baa1829f290962ee6
 <% end %>
 
 

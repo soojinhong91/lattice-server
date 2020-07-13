@@ -1,17 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.destroy_all
-u1 = User.create :name => 'Jonathan', :email => 'aaa@ga.co', :password_digest => 'chicken', :admin => TRUE
-u2 = User.create :name => 'Soojin', :email => 'bbb@ga.co', :password_digest => 'chicken', :admin => TRUE
-u3 = User.create :name => 'Joel', :email => 'ccc@ga.co', :password_digest => 'chicken', :admin => FALSE
-u4 = User.create :name => 'Aleks', :email => 'ddd@ga.co', :password_digest => 'chicken', :admin => FALSE
-u5 = User.create :name => 'Lay', :email => 'eee@ga.co', :password_digest => 'chicken', :admin => FALSE
+u1 = User.create :name => 'Jonathan', :email => 'aaa@ga.co', :password => 'chicken', :admin => TRUE
+u2 = User.create :name => 'Soojin', :email => 'bbb@ga.co', :password => 'chicken', :admin => TRUE
+u3 = User.create :name => 'Joel', :email => 'ccc@ga.co', :password => 'chicken'
+u4 = User.create :name => 'Aleks', :email => 'ddd@ga.co', :password => 'chicken'
+u5 = User.create :name => 'Lay', :email => 'eee@ga.co', :password => 'chicken'
 puts "#{ User.count } users created."
 
 Project.destroy_all
