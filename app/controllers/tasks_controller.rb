@@ -1,6 +1,16 @@
 class TasksController < ApplicationController
   def index
     @tasks = Task.all
+    if @tasks
+      render json: {
+        tasks: @tasks
+      }
+    else
+      render json: {
+        status: 500,
+        errors: ['no tasks found']
+      }
+    end
   end
 
   def new
@@ -24,12 +34,22 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find params[:id]
+    if @task
+       render json: {
+         task: @task
+       }
+     else
+       render json: {
+         status: 500,
+         errors: ['task not found']
+       }
+     end
   end
 
   def destroy
     task = Task.find params[:id]
     task.destroy
-    redirect_to tasks_path    
+    redirect_to tasks_path
   end
 
   private
