@@ -3,6 +3,16 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.all
+    if @cards
+      render json: {
+        cards: @cards
+      }
+    else
+      render json: {
+        status: 500,
+        errors: ['no cards found']
+      }
+    end
   end
 
   def new
@@ -27,6 +37,16 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.find params[:id]
+    if @card
+       render json: {
+         card: @card
+       }
+     else
+       render json: {
+         status: 500,
+         errors: ['card not found']
+       }
+     end
   end
 
 

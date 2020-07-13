@@ -1,15 +1,17 @@
 class ProjectsController < ApplicationController
 
-# trying to think of ways to convert to JSON
-  # @@project = Project.read("/path/to/project.json")
-  # render :json => @@project
-
-  # render :file => '/path/to/project.json',
-  #   :content_type => 'application/json',
-  #   :layout => false
-
   def index
     @projects = Project.all
+    if @projects
+      render json: {
+        projects: @projects
+      }
+    else
+      render json: {
+        status: 500,
+        errors: ['no projects found']
+      }
+    end
   end
 
   def new
@@ -34,6 +36,16 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find params[:id]
+    if @project
+       render json: {
+         project: @project
+       }
+     else
+       render json: {
+         status: 500,
+         errors: ['project not found']
+       }
+     end
   end
 
 
