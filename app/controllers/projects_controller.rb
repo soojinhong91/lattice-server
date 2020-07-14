@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     if @projects
-      render json: @projects.map { |p| { project: p, cards: p.cards } }
+      render json: @projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
     else
       render json: {
         status: 500,
