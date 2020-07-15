@@ -20,9 +20,9 @@ class CardsController < ApplicationController
   end
 
   def create
-    card = Card.new card_params
-    card.save
-    redirect_to cards_path
+    card = Card.create card_params
+    current_user.cards << card
+    render json: cards.map { |c| {card: c, tasks: c.tasks}}
   end
 
   def update
