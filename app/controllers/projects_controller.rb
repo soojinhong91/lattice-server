@@ -17,9 +17,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project = Project.new project_params
-    project.save
-    redirect_to projects_path
+    project = Project.create project_params
+    puts current_user, '============'
+    puts session[:user_id]
+    render json: {
+      projects: current_user.projects
+    }
   end
 
   def update
@@ -55,6 +58,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name, :description)
   end
 end

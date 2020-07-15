@@ -19,7 +19,9 @@ class TasksController < ApplicationController
 
   def create
     task = Task.create task_params
-    redirect_to task
+    render json: {
+      task: task
+    }
   end
 
   def edit
@@ -54,6 +56,6 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:description)
+    params.require(:task).permit(:description, :card_id)
   end
 end
