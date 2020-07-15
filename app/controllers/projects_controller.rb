@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
     if @projects
       render json: @projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
     else
@@ -18,11 +18,8 @@ class ProjectsController < ApplicationController
 
   def create
     project = Project.create project_params
-    puts current_user, '============'
-    puts session[:user_id]
-    render json: {
-      projects: current_user.projects
-    }
+    current_user.projects << project
+    render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
   end
 
   def update
