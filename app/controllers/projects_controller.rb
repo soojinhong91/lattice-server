@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects
     if @projects
-      # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
       render json: {
@@ -20,7 +19,6 @@ class ProjectsController < ApplicationController
   def create
     project = Project.create project_params
     current_user.projects << project
-    # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
     render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
   end
 

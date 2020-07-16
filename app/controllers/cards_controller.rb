@@ -21,8 +21,7 @@ class CardsController < ApplicationController
 
   def create
     card = Card.create card_params
-    current_user.cards << card
-    render json: cards.map { |c| {card: c, tasks: c.tasks}}
+    render json: {name: card.name, id: card.id, project_id: card.project_id, tasks: card.tasks}
   end
 
   def update
@@ -53,7 +52,6 @@ class CardsController < ApplicationController
   def destroy
     card = Card.find params[:id]
     card.destroy
-    redirect_to cards_path
   end
 
   private
