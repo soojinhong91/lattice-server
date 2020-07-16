@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   def index
     @projects = current_user.projects
     if @projects
-      render json: @projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
+      # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
+      render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
       render json: {
         status: 500,
@@ -19,7 +20,8 @@ class ProjectsController < ApplicationController
   def create
     project = Project.create project_params
     current_user.projects << project
-    render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
+    # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
+    render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
   end
 
   def update
@@ -50,7 +52,6 @@ class ProjectsController < ApplicationController
   def destroy
     project = Project.find params[:id]
     project.destroy
-    redirect_to projects_path
   end
 
   private
