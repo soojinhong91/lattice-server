@@ -9,10 +9,7 @@ class ProjectsController < ApplicationController
     if @projects.any?
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
-      render json: {
-        status: 500,
-        errors: ['no projects found']
-      }
+      render json: @projects
     end
   end
   # I think the status 500 error I'm getting is due to no login. I think it's a good error.
