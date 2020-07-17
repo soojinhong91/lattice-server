@@ -1,11 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    if logged_in?
-      @projects = current_user.projects
-    else
-      @projects = []
-    end
+    @projects = current_user.projects
     puts logged_in?, current_user, @projects, '===================================='
     if @projects.any?
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}

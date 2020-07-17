@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def current_user
       @current_user ||= User.find_by(:id => session[:user_id]) if session[:user_id]
       session.clear unless @current_user.present?
-      @current_user
+      @current_user || User.first #hard coded user logged in
   end
 
   def authorized_user?
