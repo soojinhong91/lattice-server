@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    if current_user.present?
+    if logged_in?
       @projects = current_user.projects
     else
       @projects = []
