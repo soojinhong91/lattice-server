@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     else
       @projects = []
     end
-    if @projects
+    if @projects.any?
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
       render json: {
