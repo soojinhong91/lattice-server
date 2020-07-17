@@ -1,7 +1,11 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = current_user.projects
+    if logged_in?
+      @projects = current_user.projects
+    else
+      @projects = []
+    end
     if @projects
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
@@ -11,7 +15,7 @@ class ProjectsController < ApplicationController
       }
     end
   end
-  # I think the status 500 error I'm getting is due to no login. I think it's a good error. 
+  # I think the status 500 error I'm getting is due to no login. I think it's a good error.
 
   def new
     @project = Project.new
