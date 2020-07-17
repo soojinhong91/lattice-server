@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
       }
     end
   end
+  # I think the status 500 error I'm getting is due to no login. I think it's a good error. 
 
   def new
     @project = Project.new
