@@ -2,10 +2,7 @@
   <%= form_for(@card, :html => {:multipart => true}) do |c| %>
     <%= c.label :name %>
     <%= c.text_field :name, :required => true, :autofocus => true %>
-
-<%=  c.submit %>
-
-
+    
+    <%= c.submit %>
+  <% end %>
 </div>
-
-<% end %>

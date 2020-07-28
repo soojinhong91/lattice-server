@@ -39,8 +39,6 @@ t12 = Task.create :description => 'Any missing features?'
 puts "#{ Task.count } tasks created."
 
 
-
-
 # ===================== Associations ====================================
 
 puts "Tasks and Cards "
@@ -50,8 +48,6 @@ c3.tasks << t5 << t6
 c4.tasks << t8 << t7
 c5.tasks << t9 << t10
 c6.tasks << t11 << t12
-
-
 
 puts "Cards and Projects"
 p1.cards << c1 << c2
@@ -66,4 +62,3 @@ u2.projects << p2
 u3.projects << p1
 u4.projects << p4
 u5.projects << p5
-# this worked before adding p2 and p1 to u1

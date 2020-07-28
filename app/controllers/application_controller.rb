@@ -3,24 +3,24 @@ class ApplicationController < ActionController::Base
   helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
 
   def login!
-      session[:user_id] = @user.id
+    session[:user_id] = @user.id
   end
 
   def logged_in?
-      !!session[:user_id]
+    !!session[:user_id]
   end
 
   def current_user
-      @current_user ||= User.find_by(:id => session[:user_id]) if session[:user_id]
-      session.clear unless @current_user.present?
-      @current_user || User.first #hard coded user logged in
+    @current_user ||= User.find_by(:id => session[:user_id]) if session[:user_id]
+    session.clear unless @current_user.present?
+    @current_user || User.first #hard coded user logged in
   end
 
   def authorized_user?
-      @user == current_user
+    @user == current_user
   end
 
   def logout!
-      session.clear
+    session.clear
   end
 end

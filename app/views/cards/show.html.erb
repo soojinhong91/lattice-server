@@ -1,6 +1,7 @@
 <h1><%=  @card.name %></h1>
 
 <h3><%= @card.id %></h3>
+
 <% @card.tasks.each do |t| %>
   <p> - <%= t.description %><p>
 <% end %>

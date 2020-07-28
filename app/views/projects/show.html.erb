@@ -3,12 +3,10 @@
 <h3><%= @project.id %></h3>
 <p><% @project.cards.each do | c| %></p>
   <p> - <%= c.name %><p>
-  <% c.tasks.each do | t| %>
-    <p> -- <%= t.description %></p>
+    <% c.tasks.each do | t| %>
+      <p> -- <%= t.description %></p>
+    <% end %>
   <% end %>
-<% end %>
-
-
 
 <%= link_to "Edit", edit_project_path %>
 <%= link_to "New", new_project_path %>

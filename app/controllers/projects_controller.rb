@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   def index
     @projects = current_user.projects
     puts logged_in?, current_user, @projects, '===================================='
@@ -9,7 +8,6 @@ class ProjectsController < ApplicationController
       render json: @projects
     end
   end
-  # I think the status 500 error I'm getting is due to no login. I think it's a good error.
 
   def new
     @project = Project.new
@@ -44,7 +42,6 @@ class ProjectsController < ApplicationController
        }
      end
   end
-
 
   def destroy
     project = Project.find params[:id]
