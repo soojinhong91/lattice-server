@@ -49,10 +49,13 @@ class TasksController < ApplicationController
   def destroy
     task = Task.find params[:id]
     task.destroy
+    render json: {
+      status: 'ok'
+    }
   end
 
   private
   def task_params
-    params.require(:task).permit(:description, :card_id)
+    params.require(:task).permit(:description, :card_id, :id)
   end
 end

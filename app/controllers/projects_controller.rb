@@ -2,16 +2,14 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = current_user.projects
-    if @projects
-      # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
+    puts logged_in?, current_user, @projects, '===================================='
+    if @projects.any?
       render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
     else
-      render json: {
-        status: 500,
-        errors: ['no projects found']
-      }
+      render json: @projects
     end
   end
+  # I think the status 500 error I'm getting is due to no login. I think it's a good error.
 
   def new
     @project = Project.new
@@ -20,7 +18,6 @@ class ProjectsController < ApplicationController
   def create
     project = Project.create project_params
     current_user.projects << project
-    # render json: current_user.projects.map { |p| { project: p, cards: p.cards , tasks: p.cards.map { |t| t.tasks}} }
     render json: current_user.projects.map { |p| {name: p.name, id: p.id, cards: p.cards.map {|c| {name: c.name, id: c.id, tasks: c.tasks }}}}
   end
 
@@ -56,6 +53,6 @@ class ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:name, :description, :id)
   end
 end

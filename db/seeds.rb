@@ -61,8 +61,9 @@ p4.cards << c5
 p5.cards << c6
 
 puts "Projects and Users"
-u1.projects << p3
+u1.projects << p3 << p2 << p1
 u2.projects << p2
 u3.projects << p1
 u4.projects << p4
 u5.projects << p5
+# this worked before adding p2 and p1 to u1

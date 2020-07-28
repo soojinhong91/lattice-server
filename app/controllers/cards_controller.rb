@@ -21,7 +21,7 @@ class CardsController < ApplicationController
 
   def create
     card = Card.create card_params
-    render json: {name: card.name, id: card.id, tasks: card.tasks}
+    render json: {name: card.name, id: card.id, project_id: card.project_id, tasks: card.tasks}
   end
 
   def update
@@ -48,15 +48,13 @@ class CardsController < ApplicationController
      end
   end
 
-
   def destroy
     card = Card.find params[:id]
     card.destroy
-    redirect_to cards_path
   end
 
   private
   def card_params
-    params.require(:card).permit(:name, :project_id)
+    params.require(:card).permit(:name, :project_id, :id)
   end
 end
